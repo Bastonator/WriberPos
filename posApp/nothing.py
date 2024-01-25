@@ -50,3 +50,4 @@ if request.method == "POST":
         context['cat'] = category
         context['created'] = True
 """
+sudo ln -s /etc/nginx/sites-available/pos /etc/nginx/sites-enabled/
