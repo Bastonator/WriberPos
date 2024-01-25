@@ -50,4 +50,47 @@ if request.method == "POST":
         context['cat'] = category
         context['created'] = True
 """
+[Unit]
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/run/gunicorn.sock
+
+[Install]
+WantedBy=sockets.target
+
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/WriberPos
+ExecStart=/home/ubuntu/WriberPos/env/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          pos.wsgi:application
+[Install]
+WantedBy=multi-user.target
+
+sudo vim /etc/nginx/sites-available/pos
+
+server {
+    listen 80 default_server;
+    server_name _;
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/ubuntu/WriberPos;
+    }
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+}
+
 sudo ln -s /etc/nginx/sites-available/pos /etc/nginx/sites-enabled/
+
+sudo gpasswd -a www-data ubuntu
