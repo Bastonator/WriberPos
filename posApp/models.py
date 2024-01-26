@@ -70,7 +70,7 @@ class Branch(models.Model):
     name = models.CharField(max_length=100, null=True)
     location = CountryField(null=True, blank=True)
     phone = models.IntegerField(null=True, blank=True)
-    user = models.ManyToManyField(Users, related_name='branchusers')
+    user = models.ManyToManyField(Users, related_name='branchusers', null=True)
 
     def __str__(self):
         return self.id

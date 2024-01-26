@@ -47,20 +47,19 @@
                                           We'll never share your details with anyone else.
                                         </div>
                                       </div>
-                                        <div>
+                                      <div>
                                         <label for="defaultFormControlInput" class="form-label">Branch Users</label>
                                         <input
                                           type="text"
                                           class="form-control"
-                                          id="defaultFormControlInput2"
+                                          id="defaultFormControlInput3"
                                           placeholder="First controlling user"
                                           name="user1"
-                                          list="userlist"
+                                          list="userlist1"
                                           aria-describedby="defaultFormControlHelp" />
-                                          <datalist id="userlist">
+                                          <datalist id="userlist1">
                                              {% for user in user %}
-                                                <option value="{{ user.id }}">
-                                                    {{ user.email }}{{ user.user_name }}
+                                             <option value="{{ user.id }}">-<strong>{{ user.email }}-{{ user.username }}</strong></option>
                                              {% endfor %}
                                           </datalist>
                                       </div>
@@ -76,8 +75,7 @@
                                           aria-describedby="defaultFormControlHelp" />
                                           <datalist id="userlist2">
                                              {% for user in user %}
-                                                <option value="{{ user.id }}">
-                                                    {{ user.email }}{{ user.user_name }}
+                                             <option value="{{ user.id }}">-<strong>{{ user.email }}-{{ user.username }}</strong></option>
                                              {% endfor %}
                                           </datalist>
                                       </div>
@@ -93,8 +91,7 @@
                                           aria-describedby="defaultFormControlHelp" />
                                           <datalist id="userlist3">
                                              {% for user in user %}
-                                                <option value="{{ user.id }}">
-                                                    {{ user.email }}{{ user.user_name }}
+                                             <option value="{{ user.id }}">-<strong>{{ user.email }}-{{ user.username }}</strong></option>
                                              {% endfor %}
                                           </datalist>
                                       </div>

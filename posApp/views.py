@@ -98,7 +98,9 @@ def branch_register(request):
         branch_user2 = request.POST.get('user2')
         branch_user3 = request.POST.get('user3')
         branch = Branch.objects.create(id=branch_id, name=branch_name, location=None, phone=branch_phone)
-        branch.user.add(branch_user or None, branch_user2 or None, branch_user3 or None)#it is branch.user.add because user is how the many to many field is designated in the models.py
+        branch.user.add(branch_user or None)#it is branch.user.add because user is how the many to many field is designated in the models.py
+        branch.user.add(branch_user2 or None)
+        branch.user.add(branch_user3 or None)
         context['branchid'] = branch
         context['created'] = True
     return render(request, 'posApp/branch_register.html', context=context)
