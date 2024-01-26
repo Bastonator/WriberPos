@@ -122,6 +122,7 @@ class Products(models.Model):
     date_updated = models.DateTimeField(auto_now=True) 
     branch_owner = models.ForeignKey(Branch, null=True, related_name='productsbranch', on_delete=models.CASCADE) 
     stock = models.IntegerField(null=True, blank=True)
+    expiry_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
     #user = models.ForeignKey(Users, related_name="products", on_delete=models.DO_NOTHING, default=1)
 
     def __str__(self):
