@@ -302,9 +302,9 @@ def save_product(request, pk):
         category = Category.objects.filter(id = data['category_id']).first()
         try:
             if (data['id']).isnumeric() and int(data['id']) > 0 :
-                save_product = Products.objects.filter(id = data['id']).update(code=data['code'], category_id=category, name=data['name'], description = data['description'], price = float(data['price']),status = data['status'], stock= int(data['stock']), expiry_date = request.POST.get('date'))
+                save_product = Products.objects.filter(id = data['id']).update(code=data['code'], category_id=category, name=data['name'], description = data['description'], price = float(data['price']),status = data['status'], stock= int(data['stock']), expiry_date = request.POST.get('date'), image = request.FILES['img'])
             else:
-                save_product = Products(code=data['code'], category_id=category, name=data['name'], description = data['description'], price = float(data['price']),status = data['status'],stock= int(data['stock']) ,branch_owner = branch, expiry_date = request.POST.get('date'))
+                save_product = Products(code=data['code'], category_id=category, name=data['name'], description = data['description'], price = float(data['price']),status = data['status'],stock= int(data['stock']) ,branch_owner = branch, expiry_date = request.POST.get('date'), image = request.FILES['img'])
                 save_product.save()
             resp['status'] = 'success'
             messages.success(request, 'Product Successfully saved.')
