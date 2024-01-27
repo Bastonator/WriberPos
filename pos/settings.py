@@ -131,7 +131,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS =[
     BASE_DIR / "static",
 ]
-STATIC_ROOT = "staticfiles"
+STATIC_ROOT = "/staticfiles/"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 # Default primary key field type
